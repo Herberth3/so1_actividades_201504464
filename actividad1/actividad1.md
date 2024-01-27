@@ -16,3 +16,14 @@ Además de ser privado, el espacio de direcciones virtuales de una aplicación e
 
 >Kernel Mode:
 Todo el código que se ejecuta en modo kernel comparte un único espacio de direcciones virtuales. Por lo tanto, un controlador en modo kernel no está aislado de otros controladores y del propio sistema operativo. Si un controlador en modo kernel escribe accidentalmente en la dirección virtual incorrecta, los datos que pertenecen al sistema operativo u otro controlador podrían verse comprometidos. Si se bloquea un controlador en modo kernel, todo el sistema operativo se bloquea.
+
+## Interruptions vs Traps
+| Atributo | Interrupcion | Trampa |
+| -------- | ------------ | ------ |
+| Definición | Evento que suspende temporalmente la ejecución de un programa y transfiere el control a un controlador de interrupciones específico. | Una excepción o una interrupción generada por software que se desencadena intencionadamente para ejecutar una rutina específica o controlar una condición de error. |
+| Detonante | Generado externamente por dispositivos de hardware o señales. | Generado internamente por instrucciones de software o condiciones excepcionales. |
+| Manipulación | Gestionado por rutinas de servicio de interrupción (ISR) o controladores de interrupciones. | Controlado por controladores de capturas o controladores de excepciones. |
+| Propósito | Permite que la CPU responda a eventos externos o solicitudes de dispositivos. | Permite la ejecución de rutinas específicas o maneja condiciones excepcionales dentro de un programa. |
+| Prioridad | Puede tener diferentes niveles de prioridad asignados a diferentes interrupciones. | No tiene niveles de prioridad, ya que las trampas suelen ser sincrónicas y se producen durante la ejecución del programa. |
+| Enmascaramiento | Las interrupciones se pueden enmascarar o desactivar para evitar que se produzcan. | Las trampas no se pueden enmascarar ni desactivar, ya que son activadas intencionadamente por el software. |
+| Devolución | Las interrupciones devuelven el control al programa interrumpido después de que el controlador de interrupciones complete su ejecución. | Las trampas devuelven el control a la siguiente instrucción después de que el controlador de capturas complete su ejecución. |
